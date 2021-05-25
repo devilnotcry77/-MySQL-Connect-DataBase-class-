@@ -12,14 +12,14 @@
             X.CharacterSet = "utf8";
             MySqlConnection connect = new MySqlConnection(X.ToString());
             string queryString = @a;
-            MySqlCommand command = new MySqlCommand(queryString, connect);
+            MySqlCommand command = new MySqlCommand(sql, connect);
             try
             {
                 connect.Open(); //Открываем соединение с БД
-                MySqlDataReader dr = command.ExecuteReader();
-                if (dr.HasRows)
+               //MySqlDataReader dr = command.ExecuteReader(); 
+                //if (dr.HasRows) 
                 {
-                    dt.Equals(dr);
+                    dt.Equals(command.ExecuteReader()); //Не работает (dt.Load(command.ExecuteReader()))
                 }
                 connect.Close();
             }
